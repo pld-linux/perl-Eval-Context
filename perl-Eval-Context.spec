@@ -5,8 +5,8 @@
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	Eval
 %define	pnam	Context
-Summary:	Eval::Context - Evalute perl code in context wraper
-#Summary(pl):
+Summary:	Eval::Context - Evalute Perl code in context wraper
+Summary(pl.UTF-8):	Eval::Context - wykonywanie kodu perlowego w kontekstowym obudowaniu
 Name:		perl-Eval-Context
 Version:	0.06
 Release:	1
@@ -19,27 +19,27 @@ URL:		http://search.cpan.org/dist/Eval-Context/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	perl(Data::Compare)
-BuildRequires:	perl(Data::TreeDumper)
-BuildRequires:	perl(Directory::Scratch::Structured)
-BuildRequires:	perl(File::Slurp)
-BuildRequires:	perl(Package::Generator)
-BuildRequires:	perl(Readonly)
-BuildRequires:	perl(Sub::Exporter)
-BuildRequires:	perl(Sub::Install)
-BuildRequires:	perl(Test::Block)
-BuildRequires:	perl(Test::Dependencies)
-BuildRequires:	perl(Test::Distribution)
-BuildRequires:	perl(Test::Exception)
-BuildRequires:	perl(Test::NoWarnings)
-BuildRequires:	perl(Test::Output)
-BuildRequires:	perl(Test::Perl::Critic)
-BuildRequires:	perl(Test::Pod)
-BuildRequires:	perl(Test::Pod::Coverage)
-BuildRequires:	perl(Test::Spelling)
-BuildRequires:	perl(Test::Strict)
-BuildRequires:	perl(Test::Warn)
-BuildRequires:	perl(version) >= 0.5
+BuildRequires:	perl-Data-Compare
+BuildRequires:	perl-Data-TreeDumper
+BuildRequires:	perl-Directory-Scratch-Structured
+BuildRequires:	perl-File-Slurp
+BuildRequires:	perl-Package-Generator
+BuildRequires:	perl-Readonly
+BuildRequires:	perl-Sub-Exporter
+BuildRequires:	perl-Sub-Install
+BuildRequires:	perl-Test-Block
+BuildRequires:	perl-Test-Dependencies
+BuildRequires:	perl-Test-Distribution
+BuildRequires:	perl-Test-Exception
+BuildRequires:	perl-Test-NoWarnings
+BuildRequires:	perl-Test-Output
+BuildRequires:	perl-Test-Perl-Critic
+BuildRequires:	perl-Test-Pod
+BuildRequires:	perl-Test-Pod-Coverage
+BuildRequires:	perl-Test-Spelling
+BuildRequires:	perl-Test-Strict
+BuildRequires:	perl-Test-Warn
+BuildRequires:	perl-version >= 0.5
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,9 +52,14 @@ define and optionally share variables and subroutines between your
 code and the code you wish to evaluate. Finally there is some support
 for running your code in a safe compartment.
 
-
-
-# %description -l pl # TODO
+%description -l pl.UTF-8
+Ten moduł definiuje procedurę pozwalającą na wykonywanie kodu
+perlowego w określonym kontekście. Kod może być przekazany
+bezpośrednio jako łańcuch znaków lub jako nazwa pliku do odczytu.
+Moduł udostępnia także funkcje pozwalające definiować i opcjonalnie
+współdzielić zmienne i procedury między kodem własnym i tym, który ma
+zostać wykonany. Daje także pewne możliwości wykonywania kodu w
+bezpiecznym środowisku.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
