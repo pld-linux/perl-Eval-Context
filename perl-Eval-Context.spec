@@ -9,7 +9,7 @@ Summary:	Eval::Context - Evalute Perl code in context wraper
 Summary(pl.UTF-8):	Eval::Context - wykonywanie kodu perlowego w kontekstowym obudowaniu
 Name:		perl-Eval-Context
 Version:	0.07
-Release:	1
+Release:	2
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-authors/id/N/NK/NKH/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -82,5 +82,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
+%dir %{perl_vendorlib}/Eval
 %{perl_vendorlib}/Eval/*.pm
 %{_mandir}/man3/*
