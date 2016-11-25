@@ -1,0 +1,22 @@
+Description: sort expected and retrieved variables
+ due the hash randomization in perl 5.17.* the order varies
+Origin: vendor
+Bug: https://rt.cpan.org/Dist/Display.html?Name=Eval-Context
+Forwarded: https://rt.cpan.org/Dist/Display.html?Name=Eval-Context
+Bug-Debian: http://bugs.debian.org/711442
+Author: gregor herrmann <gregoa@debian.org>
+Last-Update: 2013-06-09
+
+--- a/t/009_persistent_variables.t
++++ b/t/009_persistent_variables.t
+@@ -125,8 +125,8 @@
+ 	die $@ if $@ ;
+ 	}
+ 	
+-my @persistent_variable_names = $context->GetPersistentVariableNames() ;
+-is_deeply(\@persistent_variable_names , [qw($object $array $variable %hash $hash $scalar @array)], 'persistent variable names') or diag DumpTree(\@persistent_variable_names ) ;
++my @persistent_variable_names = sort $context->GetPersistentVariableNames() ;
++is_deeply(\@persistent_variable_names , [sort qw($object $array $variable %hash $hash $scalar @array)], 'persistent variable names') or diag DumpTree(\@persistent_variable_names ) ;
+ 
+ throws_ok
+ 	{

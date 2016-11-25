@@ -8,13 +8,17 @@
 Summary:	Eval::Context - Evalute Perl code in context wraper
 Summary(pl.UTF-8):	Eval::Context - wykonywanie kodu perlowego w kontekstowym obudowaniu
 Name:		perl-Eval-Context
-Version:	0.07
-Release:	2
+Version:	0.09.11
+Release:	1
+# same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-authors/id/N/NK/NKH/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	7989ee29343f562f6c37b17ed68df373
+# Source0-md5:	d13cabeb22d73d755634004b612f5cee
+# https://rt.cpan.org/Public/Ticket/Attachment/1222240/645514/hash-randomization.patch
+Patch0:		%{name}-hash-randomization.patch
 URL:		http://search.cpan.org/dist/Eval-Context/
+BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
@@ -24,10 +28,12 @@ BuildRequires:	perl-Directory-Scratch-Structured
 BuildRequires:	perl-File-Slurp
 BuildRequires:	perl-Package-Generator
 BuildRequires:	perl-Readonly
+BuildRequires:	perl-Safe >= 2.16
 BuildRequires:	perl-Sub-Exporter
 BuildRequires:	perl-Sub-Install
 BuildRequires:	perl-Test-Block
-BuildRequires:	perl-Test-Dependencies
+# disabled as of 0.09.x
+#BuildRequires:	perl-Test-Dependencies
 BuildRequires:	perl-Test-Distribution
 BuildRequires:	perl-Test-Exception
 BuildRequires:	perl-Test-NoWarnings
@@ -35,9 +41,9 @@ BuildRequires:	perl-Test-Output
 BuildRequires:	perl-Test-Perl-Critic
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-Test-Pod-Coverage
-BuildRequires:	perl-Test-Spelling
 BuildRequires:	perl-Test-Strict
 BuildRequires:	perl-Test-Warn
+BuildRequires:	perl-Text-Diff
 BuildRequires:	perl-version >= 0.5
 %endif
 BuildArch:	noarch
@@ -62,6 +68,7 @@ bezpiecznym środowisku.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Build.PL \
@@ -81,7 +88,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Changes README
-%dir %{perl_vendorlib}/Eval
-%{perl_vendorlib}/Eval/*.pm
-%{_mandir}/man3/*
+%doc Changes README Todo.txt
+%{perl_vendorlib}/Eval/Context.pm
+%{_mandir}/man3/Eval::Context.3pm*
