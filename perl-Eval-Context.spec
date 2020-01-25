@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_without	tests		# do not perform "make test"
 #
-%include	/usr/lib/rpm/macros.perl
 %define	pdir	Eval
 %define	pnam	Context
 Summary:	Eval::Context - Evalute Perl code in context wraper
